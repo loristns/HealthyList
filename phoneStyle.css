@@ -1,0 +1,89 @@
+main{
+    background-color: white;
+    font-family: "Montserrat", sans-serif;
+    width: 80%;
+    margin: auto;
+}
+
+main h1{
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 56px;
+    color: #3F3E68;
+}
+
+/* GLOBALS INFOS */
+
+.global-infos{
+    display: flex;
+    flex-direction: row;
+}
+
+.global-score{
+    width: 50%;
+}
+
+.global-score .circle{
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(180deg, #0A9D4E 0%, #2E7A0A 100%);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    border-radius: 84.5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.global-score p{
+    margin: 0px;
+
+    position: absolute;
+
+
+    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+
+    color: #F4F4F4;
+}
+
+.global-score .global-score-value{
+    font-size: 50px;    
+}
+
+.global-recap{
+    width: 50%;
+}
+
+.global-recap ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+}
+
+.global-category{
+    font-weight: bold;
+    font-size: 30px;
+
+    color: #3F3E68;
+}
+
+.global-nutriscore{
+    font-weight: bold;
+}
+
+.global-advice{
+    color: red; /* TODO: Change with JS */
+    font-size: 0.7em;
+}
+
+/* CATEGORIES */
+
+main h2{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 56px;
+
+    color: #3F3E68;
+}

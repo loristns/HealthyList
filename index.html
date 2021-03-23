@@ -4,9 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" media="screen and (max-width: 415px)" href="phoneStyle.css">
+
+    <title>HealthyList</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-    <h1>HealthyList</h1>
+    <div id="app">
+
+        <main>
+            <h1 @click="search">Votre liste</h1>
+
+            <div class="global-infos">
+
+                <div class="global-score">
+                    <div class="circle">
+                        <p>
+                            <span class="global-score-value">{{ score }}</span>
+                            <span class="global-score-base">/10</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="global-recap">
+                    <ul>
+                        <li>
+                            <span class="global-category">{{ healthMessage }}</span>
+                        </li>
+                        <li>
+                            Nutriscore :
+                            <span class="global-nutriscore">{{ nutriscore }}</span>
+                        </li>
+                        <li>
+                            <span class="global-advice">
+                                Réduiser votre consomation d'aliments ultras-transformés
+                            </span>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <h2>Produits sains</h2>
+            <div class="healthy-products">
+
+            </div>
+
+            <h2>Produits moyens</h2>
+            <div class="middle-products">
+                        
+            </div>
+
+            <h2>Produits à éviter</h2>
+            <div class="bad-products">
+            
+            </div>
+
+        </main>
+
+
+
+        <section>
+        </section>
+
+        <section>
+        </section>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+    
 </body>
 </html>
