@@ -1,9 +1,44 @@
-main{
+#app {
     background-color: white;
     font-family: "Montserrat", sans-serif;
     width: 80%;
     margin: auto;
 }
+
+.material-icons {
+    pointer-events: none;
+}
+
+button{
+    margin : 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.container{
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quit-cross{
+    position: absolute;
+    top: 10px;
+    right:10px;
+    background-color: white;
+    border-radius: 84.5px;
+}
+
+.quit-cross > i{
+    font-size: 3em;
+    color: #3F3E68;
+}
+
+/*********** DÉBUT MAIN ***********/
 
 main h1{
     font-weight: bold;
@@ -19,14 +54,13 @@ main h1{
     flex-direction: row;
 }
 
-.global-score{
+.global-score {
     width: 50%;
 }
 
-.global-score .circle{
+.global-score .circle {
     width: 120px;
     height: 120px;
-    background: linear-gradient(180deg, #0A9D4E 0%, #2E7A0A 100%);
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
     border-radius: 84.5px;
     
@@ -35,7 +69,23 @@ main h1{
     align-items: center;
 }
 
-.global-score p{
+.circle-grey {
+    background: linear-gradient(180deg, #AAAAAA 0%, #555555 100%);
+}
+
+.circle-red {
+    background: linear-gradient(180deg, #C46B18 0%, #93170F 100%);
+}
+
+.circle-yellow {
+    background: linear-gradient(180deg, #D2B623 0%, #86790A 100%);
+}
+
+.circle-green {
+    background: linear-gradient(180deg, #0A9D4E 0%, #2E7A0A 100%);
+}
+
+.global-score p {
     margin: 0px;
 
     position: absolute;
@@ -69,13 +119,14 @@ main h1{
     color: #3F3E68;
 }
 
-.global-nutriscore{
+.global-nutriscore {
     font-weight: bold;
 }
 
-.global-advice{
-    color: red; /* TODO: Change with JS */
+.global-advice {
+    color: red;
     font-size: 0.7em;
+    font-weight: bold;
 }
 
 /* CATEGORIES */
@@ -86,4 +137,92 @@ main h2{
     line-height: 56px;
 
     color: #3F3E68;
+}
+
+.adding-button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.adding-button > i {
+    font-size: 5em;
+    color: #3F3E68;
+}
+
+.product-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+/*********** FIN MAIN ***********/
+
+
+/*********** DÉBUT SEARCH PRODUCT ***********/
+section#search-page{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+#search-page h1{
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 56px;
+    color: white;
+}
+
+#search-form{
+    display: flex;
+    width: 100%;
+
+    justify-content: space-around;
+
+    border: none;
+    height: 60px;
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+
+    background-color: white;
+}
+
+#search-product{
+    border: none;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+#search-page .products-answer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow-y: scroll;
+}
+
+.product {
+    width: 7em;
+    height: 7em;
+    border-radius: 20px;
+    margin-top: 35px;
+
+    padding: 1em;
+    color: #3F3E68;
+    background-size: cover;
+    
+    overflow: hidden;
+}
+
+.product:hover {
+    text-decoration: underline;
+}
+
+.product h4 {
+    text-overflow: ellipsis;
+    margin: 0;
 }
