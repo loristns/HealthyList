@@ -7,7 +7,17 @@ const app = new Vue({
             items: [],
             addMenuOpened: false,
             lastSearch: "",
-            searchAnswer: []
+            searchAnswer: [],
+            currentItemInView: {
+                name: "Oréo",
+                quantity: "3kg",
+                checked: false, 
+                openfoodfacts: {
+                    brands: "ZDAZDAZD, daZdzad",
+                    image_url: "https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.400.jpg"
+                }
+            },
+            currentItemInViewIndex: 0
         };
     },
 
@@ -80,9 +90,22 @@ const app = new Vue({
         badItems() {
             return this.items.filter((item) => computeIndividualScore(item) <= 3);
         },
+
+        otherItems() {
+            const printedItems = [
+                ...this.healthyItems.map((item) => JSON.stringify(item)),
+                ...this.middleItems.map((item) => JSON.stringify(item)),
+                ...this.badItems.map((item) => JSON.stringify(item)),
+            ];
+            return this.items.filter((item) => !printedItems.includes(JSON.stringify(item)));
+        }
     },
 
     methods: {
+        saveToLocalStorage() {
+            window.localStorage.setItem('items', JSON.stringify(this.items));
+        },
+
         async searchProduct(event) {
             event.preventDefault();
 
@@ -90,9 +113,26 @@ const app = new Vue({
             this.searchAnswer = result.slice(0, 20);
         },
         
-        addToList(item){
+        addToList(item) {
             this.items.push(item);
             this.addMenuOpened = false;
+
+            this.saveToLocalStorage();
+        },
+
+        editItem(i) {
+            this.currentItemInView = this.items[i];
+            this.currentItemInViewIndex = i;
+        },
+
+        saveItem() {
+            this.items[this.currentItemInViewIndex] = this.currentItemInView;
+            this.saveToLocalStorage();
+            this.currentItemInView = null;
         }
+    },
+
+    mounted() {
+        this.items = JSON.parse(window.localStorage.getItem('items') || '[]');
     }
 });

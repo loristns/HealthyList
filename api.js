@@ -39,9 +39,13 @@ async function searchProductByBarcode(barcode) {
 function computeNutriScore(items) {
     const nutriscores = items
         .filter((item) => item.openfoodfacts.nutriscore_grade != null)
-        .map((item) => 'edcba'.indexOf(item.openfoodfacts.nutriscore_grade) * 4);
+        .map((item) => ('edcba'.indexOf(item.openfoodfacts.nutriscore_grade) + 1) * 2);
 
-    return Math.round(nutriscores.reduce((a, b) => a + b, 0) / (nutriscores.length + 1));
+    if (nutriscores.length === 0) {
+        return 0;
+    }
+
+    return Math.round(nutriscores.reduce((a, b) => a + b, 0) / nutriscores.length);
 }
 
 function computeNovaScore(items) {
@@ -85,7 +89,6 @@ function computeScore(items) {
 }
 
 function computeIndividualScore(item) {
-    console.log(item.name, computeNutriScore([item]), computeNovaScore([item]))
     return computeScore([item]);
 }
 

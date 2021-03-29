@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="phoneStyle.css">
     <!-- <link rel="stylesheet" media="screen and (max-width: 415px)" href="phoneStyle.css"> -->
-
 
     <title>HealthyList</title>
 
@@ -53,30 +52,48 @@
                 </div>
             </div>
 
-            <h2>Produits sains</h2>
+            <h2 v-show="healthyItems.length > 0">Produits sains</h2>
             <div class="product-list">
-                <div v-for="answer in healthyItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }">
+                <div v-for="(answer, i) in healthyItems" class="product"
+                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    @click="() => editItem(i)"
+                >
                     <h4>{{answer.name}}</h4>
                     <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
 
-            <h2>Produits moyens</h2>
+            <h2 v-show="middleItems.length > 0">Produits moyens</h2>
             <div class="product-list">
-                <div v-for="answer in middleItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }">
+                <div v-for="(answer, i) in middleItems" class="product"
+                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    @click="() => editItem(i)"
+                >
                     <h4>{{answer.name}}</h4>
                     <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
 
-            <h2>Produits à éviter</h2>
+            <h2 v-show="badItems.length > 0">Produits à éviter</h2>
             <div class="product-list">
-                <div v-for="answer in badItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }">
+                <div v-for="(answer, i) in badItems" class="product"
+                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    @click="() => editItem(i)"
+                >
+                    <h4>{{answer.name}}</h4>
+                    <p>{{answer.openfoodfacts.brands}}</p>
+                    <p>{{answer.quantity}}</p>
+                </div>
+            </div>
+
+            <h2 v-show="otherItems.length > 0">Produits non classés</h2>
+            <div class="product-list">
+                <div v-for="(answer, i) in otherItems" class="product"
+                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    @click="() => editItem(i)"
+                >
                     <h4>{{answer.name}}</h4>
                     <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
@@ -115,8 +132,32 @@
         </section>
 
         <!-- Product infos -->
-        <section id="product-infos">
+        <section id="product-infos" v-if="currentItemInView != null">
+            <div class="container">
+                <div class="product-image-container">
+                    <img class="product-image" :src="currentItemInView.openfoodfacts.image_url" alt="Product-image" />
+                    <button class="quit-cross" @click="saveItem()">
+                        <i class="large material-icons">clear</i>
+                    </button>
+                </div>
 
+                <div class="product-name">
+                    <h2>Nom :</h2>
+                    <input class="product-info-input" type="text" v-model="currentItemInView.name"/>
+                    
+                    <h2>Description :</h2>
+                    <div class="product-info-input product-desc-input">
+                        <p>Marques : {{currentItemInView.openfoodfacts.brands}}</p>
+                        <p>Quantité : {{currentItemInView.quantity}}</p>
+                    </div>
+                </div>
+
+                <div class="product-button-container">
+                    <button class="product-button product-list-check-button">Rayer de la liste</button>
+                    <button class="product-button product-remove-button">Retirer de la liste</button>
+                </div>
+            </div>
+            
         </section>
     </div>
 

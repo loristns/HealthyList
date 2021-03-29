@@ -1,8 +1,13 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
 #app {
     background-color: white;
     font-family: "Montserrat", sans-serif;
-    width: 80%;
-    margin: auto;
+    max-width: 500px;
+    margin: 20px;
 }
 
 .material-icons {
@@ -17,18 +22,19 @@ button{
 }
 
 .container{
-    width: 80%;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
     height: 100%;
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .quit-cross{
-    position: absolute;
+    position: fixed;
     top: 10px;
-    right:10px;
+    right: 10px;
     background-color: white;
     border-radius: 84.5px;
 }
@@ -49,18 +55,19 @@ main h1{
 
 /* GLOBALS INFOS */
 
-.global-infos{
+.global-infos {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .global-score {
-    width: 50%;
+    padding-right: 20px;
 }
 
 .global-score .circle {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
     border-radius: 84.5px;
     
@@ -102,10 +109,6 @@ main h1{
     font-size: 50px;    
 }
 
-.global-recap{
-    width: 50%;
-}
-
 .global-recap ul{
     list-style-type: none;
     margin: 0;
@@ -114,7 +117,7 @@ main h1{
 
 .global-category{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 
     color: #3F3E68;
 }
@@ -155,13 +158,20 @@ main h2{
     flex-direction: row;
     flex-wrap: wrap;
 
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.product-list .product {
+    margin: 10px;
 }
 /*********** FIN MAIN ***********/
 
 
 /*********** DÉBUT SEARCH PRODUCT ***********/
 section#search-page{
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -177,13 +187,14 @@ section#search-page{
     color: white;
 }
 
-#search-form{
-    display: flex;
-    width: 100%;
-
-    justify-content: space-around;
+#search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-gap: 10px;
+    padding: 0 20px;
 
     border: none;
+    width: 100%;
     height: 60px;
     border-radius: 20px;
 
@@ -192,24 +203,31 @@ section#search-page{
     background-color: white;
 }
 
-#search-product{
+#search-product {
     border: none;
     padding: 5px;
     padding-left: 10px;
 }
 
-#search-page .products-answer{
+#search-product:focus {
+    outline: none;
+}
+
+#search-page .products-answer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     overflow-y: scroll;
 }
 
+#search-page .products-answer .product {
+    margin: 10px;
+}
+
 .product {
     width: 7em;
     height: 7em;
     border-radius: 20px;
-    margin-top: 35px;
 
     padding: 1em;
     color: #3F3E68;
@@ -225,4 +243,90 @@ section#search-page{
 .product h4 {
     text-overflow: ellipsis;
     margin: 0;
+}
+
+/*********** FIN SEARCH PRODUCT ***********/
+
+/*********** DÉBUT PRODUCT INFOS ***********/
+section#product-infos{
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+.product-image-container{
+    margin-bottom: 2em;
+}
+
+.product-image{
+    margin-top: 10px;
+    width: 15em;
+    height: 15em;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+#product-infos .product-name{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product-info-input:focus {
+    outline: none;
+}
+
+.product-info-input{
+    width: 95%;
+    border: none;
+    background-color: white;
+    color: #3F3E68;
+    font-size: 1em;
+    height: 3em;
+    padding-left: 5%;
+    border-radius: 20px;
+    margin-bottom: 3em;
+}
+
+.product-desc-input{
+    height: 5em;
+    overflow-y: scroll;
+}
+
+.product-button-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-button{
+    width: 80%;
+    height: 2em;
+    background-color: white;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    border-radius: 30px;
+}
+
+.product-button:hover{
+    text-decoration: underline;
+}
+
+.product-list-check-button{
+    background-color: #3F3E68;
+    color: white;
+}
+
+.product-remove-button{
+    background-color: red;
+    color: white;
 }
