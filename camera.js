@@ -20,7 +20,7 @@ function initCam() {
 
     Quagga.onDetected((data) => {
         console.log(data);
-        document.getElementById("answer").innerHTML = data;
+        document.getElementById("answer").innerHTML = `code : ${data.coderesult.code}`;
     });
     Quagga.start();
 }
