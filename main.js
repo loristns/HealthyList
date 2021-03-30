@@ -8,15 +8,7 @@ const app = new Vue({
             addMenuOpened: false,
             lastSearch: "",
             searchAnswer: [],
-            currentItemInView: {
-                name: "Oréo",
-                quantity: "3kg",
-                checked: false, 
-                openfoodfacts: {
-                    brands: "ZDAZDAZD, daZdzad",
-                    image_url: "https://static.openfoodfacts.org/images/products/073/762/806/4502/front_en.6.400.jpg"
-                }
-            },
+            currentItemInView: null,
             currentItemInViewIndex: 0
         };
     },
@@ -123,6 +115,12 @@ const app = new Vue({
         editItem(i) {
             this.currentItemInView = this.items[i];
             this.currentItemInViewIndex = i;
+        },
+
+        removeItemFromList(item){
+            this.items.splice(this.items.indexOf(item), 1);
+            this.currentItemInView = null;
+            this.saveToLocalStorage();
         },
 
         saveItem() {

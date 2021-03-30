@@ -55,7 +55,7 @@
             <h2 v-show="healthyItems.length > 0">Produits sains</h2>
             <div class="product-list">
                 <div v-for="(answer, i) in healthyItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
                     @click="() => editItem(i)"
                 >
                     <h4>{{answer.name}}</h4>
@@ -67,7 +67,7 @@
             <h2 v-show="middleItems.length > 0">Produits moyens</h2>
             <div class="product-list">
                 <div v-for="(answer, i) in middleItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
                     @click="() => editItem(i)"
                 >
                     <h4>{{answer.name}}</h4>
@@ -79,7 +79,7 @@
             <h2 v-show="badItems.length > 0">Produits à éviter</h2>
             <div class="product-list">
                 <div v-for="(answer, i) in badItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
                     @click="() => editItem(i)"
                 >
                     <h4>{{answer.name}}</h4>
@@ -91,7 +91,7 @@
             <h2 v-show="otherItems.length > 0">Produits non classés</h2>
             <div class="product-list">
                 <div v-for="(answer, i) in otherItems" class="product"
-                    :style="{ backgroundImage: `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})` }"
+                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
                     @click="() => editItem(i)"
                 >
                     <h4>{{answer.name}}</h4>
@@ -154,7 +154,7 @@
 
                 <div class="product-button-container">
                     <button class="product-button product-list-check-button">Rayer de la liste</button>
-                    <button class="product-button product-remove-button">Retirer de la liste</button>
+                    <button class="product-button product-remove-button" @click="removeItemFromList(currentItemInView)">Retirer de la liste</button>
                 </div>
             </div>
             

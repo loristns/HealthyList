@@ -21,6 +21,10 @@ button{
     border: none;
 }
 
+button:hover{
+    cursor: pointer;
+}
+
 .container{
     width: 100%;
     max-width: 500px;
@@ -163,6 +167,14 @@ main h2{
 
 .product-list .product {
     margin: 10px;
+    border: solid black 2px;
+}
+
+.product-list .product p, .product-list .product h4{
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255, 0.5);
+    color: black;
+    font-weight: bold;
 }
 /*********** FIN MAIN ***********/
 
@@ -238,6 +250,7 @@ section#search-page{
 
 .product:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .product h4 {
