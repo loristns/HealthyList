@@ -54,51 +54,67 @@
 
             <h2 v-show="healthyItems.length > 0">Produits sains</h2>
             <div class="product-list">
-                <div v-for="(answer, i) in healthyItems" class="product"
-                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
-                    @click="() => editItem(i)"
+                <div v-for="answer in healthyItems" class="product" :class="answer.checked ? 'product-checked' : null"
+                    :style="{
+                        backgroundImage: answer.checked
+                            ? `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})`
+                            : `url(${answer.openfoodfacts.image_url})`
+                    }"
+                    @click="() => editItem(answer)"
                 >
                     <h4>{{answer.name}}</h4>
-                    <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
 
             <h2 v-show="middleItems.length > 0">Produits moyens</h2>
             <div class="product-list">
-                <div v-for="(answer, i) in middleItems" class="product"
-                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
-                    @click="() => editItem(i)"
+                <div v-for="answer in middleItems" class="product" :class="answer.checked ? 'product-checked' : null"
+                    :style="{
+                        backgroundImage: answer.checked
+                            ? `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})`
+                            : `url(${answer.openfoodfacts.image_url})`
+                    }"
+                    @click="() => editItem(answer)"
                 >
                     <h4>{{answer.name}}</h4>
-                    <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
 
             <h2 v-show="badItems.length > 0">Produits à éviter</h2>
             <div class="product-list">
-                <div v-for="(answer, i) in badItems" class="product"
-                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
-                    @click="() => editItem(i)"
+                <div v-for="answer in badItems" class="product" :class="answer.checked ? 'product-checked' : null"
+                    :style="{
+                        backgroundImage: answer.checked
+                            ? `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})`
+                            : `url(${answer.openfoodfacts.image_url})`
+                    }"
+                    @click="() => editItem(answer)"
                 >
                     <h4>{{answer.name}}</h4>
-                    <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
 
             <h2 v-show="otherItems.length > 0">Produits non classés</h2>
             <div class="product-list">
-                <div v-for="(answer, i) in otherItems" class="product"
-                    :style="{ backgroundImage: `url(${answer.openfoodfacts.image_url})` }"
-                    @click="() => editItem(i)"
+                <div v-for="answer in otherItems" class="product" :class="answer.checked ? 'product-checked' : null"
+                    :style="{
+                        backgroundImage: answer.checked
+                            ? `linear-gradient(180deg, rgba(240, 240, 240, 0.65) 0%, rgba(240, 240, 240, 0.65) 100%), url(${answer.openfoodfacts.image_url})`
+                            : `url(${answer.openfoodfacts.image_url})`
+                    }"
+                    @click="() => editItem(answer)"
                 >
                     <h4>{{answer.name}}</h4>
-                    <p>{{answer.openfoodfacts.brands}}</p>
                     <p>{{answer.quantity}}</p>
                 </div>
             </div>
+
+            <button class="list-clear-button" v-show="items.length > 0" @click="clearList">
+                Vider la liste
+            </button>
 
             <button class="adding-button" @click="addMenuOpened = true">
                 <i class="material-icons">add_circle</i>
@@ -128,6 +144,11 @@
                         <p>{{answer.quantity}}</p>
                     </div>
                 </div>
+
+                <div class="product-barcode-scan">
+                    <p>Ou</p>
+                    <img src="https://lepetitjournal.com/sites/default/files/styles/main_article/public/2020-02/Code%20barre%20883%20en%20BIrmanie.jpg?itok=vSo6AA2N" alt="scann" @click="startScan"/>
+                </div>
             </div>
         </section>
 
@@ -145,22 +166,35 @@
                     <h2>Nom :</h2>
                     <input class="product-info-input" type="text" v-model="currentItemInView.name"/>
                     
-                    <h2>Description :</h2>
-                    <div class="product-info-input product-desc-input">
+                    <h2>Quantité :</h2>
+                    <input class="product-info-input" type="text" v-model="currentItemInView.quantity"/>
+
+                    <div class="product-desc-input">
                         <p>Marques : {{currentItemInView.openfoodfacts.brands}}</p>
-                        <p>Quantité : {{currentItemInView.quantity}}</p>
                     </div>
                 </div>
 
                 <div class="product-button-container">
-                    <button class="product-button product-list-check-button">Rayer de la liste</button>
-                    <button class="product-button product-remove-button" @click="removeItemFromList(currentItemInView)">Retirer de la liste</button>
+                    <button
+                        class="product-button product-list-check-button"
+                        @click="toggleItemFromList"
+                    >
+                        {{currentItemInView.checked ? "Remettre en liste" : "Rayer de la liste"}}
+                    </button>
+                    <button
+                        class="product-button product-remove-button"
+                        @click="removeItemFromList"
+                    >
+                        Retirer de la liste
+                    </button>
                 </div>
             </div>
             
         </section>
     </div>
 
+    <script src="quagga.min.js"></script>
+    <script src="camera.js"></script>
     <script src="api.js"></script>
     <script src="main.js"></script>
     

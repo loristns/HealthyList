@@ -8,8 +8,7 @@ const app = new Vue({
             addMenuOpened: false,
             lastSearch: "",
             searchAnswer: [],
-            currentItemInView: null,
-            currentItemInViewIndex: 0
+            currentItemInView: null
         };
     },
 
@@ -112,22 +111,34 @@ const app = new Vue({
             this.saveToLocalStorage();
         },
 
-        editItem(i) {
-            this.currentItemInView = this.items[i];
-            this.currentItemInViewIndex = i;
+        editItem(item) {
+            this.currentItemInView = item;
         },
 
-        removeItemFromList(item){
-            this.items.splice(this.items.indexOf(item), 1);
+        toggleItemFromList() {
+            this.items[this.items.indexOf(this.currentItemInView)].checked = !this.items[this.items.indexOf(this.currentItemInView)].checked;
             this.currentItemInView = null;
             this.saveToLocalStorage();
+        },
+
+        removeItemFromList() {
+            this.items.splice(this.items.indexOf(this.currentItemInView), 1);
+            this.currentItemInView = null;
+            this.saveToLocalStorage();
+        },
+
+        clearList(){
+            this.items = []
+            this.saveToLocalStorage();
+
         },
 
         saveItem() {
-            this.items[this.currentItemInViewIndex] = this.currentItemInView;
             this.saveToLocalStorage();
             this.currentItemInView = null;
-        }
+        },
+
+        startScan() {}
     },
 
     mounted() {

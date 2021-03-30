@@ -1,13 +1,16 @@
 body {
-    display: flex;
-    justify-content: center;
+    margin: 0;
 }
 
 #app {
     background-color: white;
     font-family: "Montserrat", sans-serif;
-    max-width: 500px;
-    margin: 20px;
+
+    width: 100vw;
+    height: 100vh;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
 }
 
 .material-icons {
@@ -29,7 +32,6 @@ button:hover{
     width: 100%;
     max-width: 500px;
     margin: 20px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,6 +51,11 @@ button:hover{
 }
 
 /*********** DÉBUT MAIN ***********/
+
+main {
+    max-width: 500px;
+    margin: 20px;
+}
 
 main h1{
     font-weight: bold;
@@ -146,6 +153,49 @@ main h2{
     color: #3F3E68;
 }
 
+.product-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+}
+
+.product-list .product {
+    margin: 5px;
+    border: solid #3F3E68 2px;
+}
+
+.product-list .product p, .product-list .product h4{
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255, 0.65);
+    margin: 0.5em;
+    padding: 0.5em;
+    color: #3F3E68;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.product-list .product-checked p, .product-list .product-checked h4{
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
+.list-clear-button{
+    border-radius: 40px;
+
+    background: linear-gradient(rgb(240, 36, 53), rgb(114, 14, 14));
+
+    color: white;
+    font-weight: bold;
+
+    height: 5em;
+    width: 10em;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+}
+
 .adding-button{
     position: fixed;
     bottom: 20px;
@@ -156,26 +206,6 @@ main h2{
     font-size: 5em;
     color: #3F3E68;
 }
-
-.product-list{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    justify-content: space-around;
-}
-
-.product-list .product {
-    margin: 10px;
-    border: solid black 2px;
-}
-
-.product-list .product p, .product-list .product h4{
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255, 0.5);
-    color: black;
-    font-weight: bold;
-}
 /*********** FIN MAIN ***********/
 
 
@@ -183,7 +213,7 @@ main h2{
 section#search-page{
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -237,11 +267,11 @@ section#search-page{
 }
 
 .product {
-    width: 7em;
-    height: 7em;
+    width: 8em;
+    height: 8em;
     border-radius: 20px;
 
-    padding: 1em;
+    padding: 0.5em;
     color: #3F3E68;
     background-size: cover;
     
@@ -258,13 +288,31 @@ section#search-page{
     margin: 0;
 }
 
+.product-barcode-scan {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.product-barcode-scan img{
+    width: 100%;
+    border-radius: 60px;
+}
+
+.product-barcode-scan img:hover{
+    cursor: pointer;
+}
+
+
 /*********** FIN SEARCH PRODUCT ***********/
 
 /*********** DÉBUT PRODUCT INFOS ***********/
 section#product-infos{
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -310,8 +358,7 @@ section#product-infos{
 }
 
 .product-desc-input{
-    height: 5em;
-    overflow-y: scroll;
+    margin-bottom: 2em;
 }
 
 .product-button-container{
