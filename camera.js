@@ -18,7 +18,10 @@ function initCam() {
         console.log("Initialization finished. Ready to start");
     });
 
-    Quagga.onDetected((data) => console.log(data));
+    Quagga.onDetected((data) => {
+        console.log(data);
+        document.getElementById("answer").innerHTML = data;
+    });
     Quagga.start();
 }
 
