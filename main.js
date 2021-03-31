@@ -138,10 +138,25 @@ const app = new Vue({
             this.currentItemInView = null;
         },
 
-        startScan() {}
+        async scanCode(code) {
+            if (this.addMenuOpened) {
+                // requête api
+                const item = await searchProductByBarcode(code);
+                
+                if (item === undefined) return;
+
+                // ajoute le produit + ouvre la page de modif du produit
+                this.addToList(item);
+                this.editItem(item);
+            }
+        }
     },
 
-    mounted() {
+    created() {
         this.items = JSON.parse(window.localStorage.getItem('items') || '[]');
+        
+        this.$on('new-barcode-detected', this.scanCode);
     }
 });
+
+subscribeToScanner(app);

@@ -106,9 +106,6 @@ main h1{
 .global-score p {
     margin: 0px;
 
-    position: absolute;
-
-
     font-weight: bold;
     display: flex;
     align-items: baseline;
@@ -296,13 +293,19 @@ section#search-page{
     color: white;
 }
 
-.product-barcode-scan img{
-    width: 100%;
-    border-radius: 60px;
+.product-barcode-scan p{
+    margin: 0;
 }
 
-.product-barcode-scan img:hover{
-    cursor: pointer;
+
+.product-barcode-scan #video-container video{
+    margin-top: 20px;
+    max-width: 300px;
+    border-radius: 20px;
+}
+
+.product-barcode-scan #video-container .drawingBuffer {
+    display: none;
 }
 
 
