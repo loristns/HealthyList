@@ -1,29 +1,24 @@
 // @ts-nocheck
 
-function initCam() {
-    Quagga.init({
+Quagga.init({
         inputStream: {
             name: "Live",
             type: "LiveStream",
-            target: document.querySelector('#cam')    // Or '#yourElement' (optional)
+            target: document.getElementById('cam')
         },
         decoder: {
             readers: ["ean_reader"]
         }
-    }, (err) => {
+    },
+    function (err) {
         if (err) {
-            console.log(err);
-            return
+            console.error('This happened :', err);
+            return;
         }
-        console.log("Initialization finished. Ready to start");
-    });
-
-    Quagga.onDetected((data) => {
-        console.log(data);
-        document.getElementById("answer").innerHTML = `code : ${data.coderesult.code}`;
-    });
-    Quagga.start();
-}
-
-
-initCam();
+    
+        Quagga.onDetected((data) => {
+            document.getElementById('answer').innerHTML = JSON.stringify(data)
+        });
+        Quagga.start();
+    }
+);
