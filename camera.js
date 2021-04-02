@@ -23,6 +23,7 @@ function subscribeToScanner(vue) {
                 vue.$emit('new-barcode-detected', data.codeResult.code);
             });
 
+            Quagga.start();
         }
     );
 }
