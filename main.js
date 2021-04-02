@@ -151,6 +151,7 @@ const app = new Vue({
                 // ajoute le produit + ouvre la page de modif du produit
                 this.addToList(item);
                 this.editItem(item);
+                Quagga.start();
             }
         }
     },
