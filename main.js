@@ -143,10 +143,7 @@ const app = new Vue({
                 // requête api
                 const item = await searchProductByBarcode(code);
                 
-                if (item === undefined){
-                    Quagga.start();
-                    return;
-                }
+                if (item === undefined) return;
 
                 // ajoute le produit + ouvre la page de modif du produit
                 this.addToList(item);
