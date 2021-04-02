@@ -146,8 +146,10 @@ const app = new Vue({
                 if (item === undefined) return;
 
                 // ajoute le produit + ouvre la page de modif du produit
-                this.addToList(item);
-                this.editItem(item);
+                if(!this.items.includes(item)){
+                    this.addToList(item);
+                    this.editItem(item);
+                }
             }
         }
     },

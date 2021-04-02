@@ -8,7 +8,6 @@
 
 
 */
-var inSearch = false;
 
 function convertToItem(openfoodfacts) {
     return {
@@ -28,18 +27,13 @@ async function searchProductsByName(query) {
 
 async function searchProductByBarcode(barcode) {
     const request = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`)
+    const json = await request.json();
 
-    if(!inSearch){
-        inSearch = true;
-        const json = await request.json();
-    
-        if (json.product == null) {
-            return undefined;
-        }
-        inSearch = false;
-        return convertToItem(json.product);
+    if (json.product == null) {
+        return undefined;
     }
-    return undefined;
+
+    return convertToItem(json.product);
 }
 
 function computeNutriScore(items) {
