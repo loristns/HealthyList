@@ -97,6 +97,16 @@ const app = new Vue({
             window.localStorage.setItem('items', JSON.stringify(this.items));
         },
 
+        openSearch() {
+            this.addMenuOpened = true;
+            subscribeToScanner(this);
+        },
+
+        closeSearch() {
+            this.addMenuOpened = false;
+            Quagga.stop();
+        },
+
         async searchProduct(event) {
             event.preventDefault();
 
@@ -106,7 +116,7 @@ const app = new Vue({
         
         addToList(item) {
             this.items.push(item);
-            this.addMenuOpened = false;
+            this.closeSearch();
 
             this.saveToLocalStorage();
         },
@@ -139,11 +149,16 @@ const app = new Vue({
         },
 
         async scanCode(code) {
+            Quagga.stop();
+            
             if (this.addMenuOpened) {
                 // requête api
                 const item = await searchProductByBarcode(code);
                 
-                if (item === undefined) return;
+                if (item === undefined) {
+                    subscribeToScanner(this);
+                    return;
+                }
 
                 // ajoute le produit + ouvre la page de modif du produit
                 this.addToList(item);
@@ -158,5 +173,3 @@ const app = new Vue({
         this.$on('new-barcode-detected', this.scanCode);
     }
 });
-
-subscribeToScanner(app);
