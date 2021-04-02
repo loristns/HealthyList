@@ -32,11 +32,11 @@ async function searchProductByBarcode(barcode) {
     if(!inSearch){
         inSearch = true;
         const json = await request.json();
+        inSearch = false;
     
         if (json.product == null) {
             return undefined;
         }
-        inSearch = false;
         return convertToItem(json.product);
     }
     return undefined;
