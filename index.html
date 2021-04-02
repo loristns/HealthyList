@@ -116,7 +116,7 @@
                 Vider la liste
             </button>
 
-            <button class="adding-button" @click="openSearch">
+            <button class="adding-button" @click="addMenuOpened = true">
                 <i class="material-icons">add_circle</i>
             </button>
         </main>
@@ -124,7 +124,7 @@
 
         <!-- Search product -->
         <section id="search-page" v-show="addMenuOpened">
-            <button class="quit-cross" @click="closeSearch">
+            <button class="quit-cross" @click="addMenuOpened = false">
                 <i class="large material-icons">clear</i>
             </button>
             <div class="container">
