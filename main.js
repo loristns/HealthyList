@@ -138,6 +138,11 @@ const app = new Vue({
             this.currentItemInView = null;
         },
 
+        openMenu(){
+            this.addMenuOpened = true;
+            Quagga.start();
+        },
+
         async scanCode(code) {
             if (this.addMenuOpened) {
                 // requête api
@@ -151,7 +156,6 @@ const app = new Vue({
                 // ajoute le produit + ouvre la page de modif du produit
                 this.addToList(item);
                 this.editItem(item);
-                Quagga.start();
             }
         }
     },
