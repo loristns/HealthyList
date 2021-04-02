@@ -148,8 +148,8 @@ const app = new Vue({
                 // ajoute le produit + ouvre la page de modif du produit
                 if(!this.items.includes(item)){
                     this.addToList(item);
+                    this.editItem(item);
                 }
-                this.editItem(item);
             }
         }
     },
