@@ -1,3 +1,3 @@
 # HealthyList
 
-Application link : https://the-new-sky.github.io/HealthyList/index.html
+Application link : https://loristns.github.io/HealthyList/index.html
